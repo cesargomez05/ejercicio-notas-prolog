@@ -24,3 +24,21 @@ calificacion(estudiante, curso, nota, porcentaje).
 
 ## Uso de la solución
 
+- Descargar los archivos del repositorio, o clonar el repositorio
+```
+$ git clone https://github.com/cesargomez05/ejercicio-notas-prolog.git
+```
+
+- Descargar e instalar Python 3 del [siguiente enlace](https://www.python.org/).
+
+- Instalar `pyswip` usando el comando
+```
+pip install pyswip
+```
+
+- Ingresar al archivo de Prolog `notas.pl` para consultar la información registrada
+
+- Ejecutar el archivo `notas.py`
+```
+python notas.py
+```
