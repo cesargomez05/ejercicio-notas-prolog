@@ -1,3 +1,11 @@
+% Regla para sumar los valores del array
+suma([],0).
+suma([N|Y],M):- suma(Y, M1), M is M1 + N.
+
+% Regla para obtener la longitud de un elemento
+long([],0).
+long([_|Y],M):- long(Y, M1), M is M1 + 1.
+
 % estudiante(Nombre)
 estudiante(andrea).
 estudiante(carlos).
@@ -8,22 +16,14 @@ estudiante(juan).
 curso(informatica).
 curso(programacion).
 
-% estudiante(Estudiante, Curso)
-estudiante(andrea, informatica).
-estudiante(carlos, informatica).
-estudiante(juan, informatica).
-estudiante(andrea, programacion).
-estudiante(carlos, programacion).
-estudiante(cesar, programacion).
-estudiante(juan, programacion).
-
-% Regla para sumar los valores del array
-suma([],0).
-suma([N|Y],M):- suma(Y, M1), M is M1 + N.
-
-% Regla para obtener la longitud de un elemento
-long([],0).
-long([_|Y],M):- long(Y, M1), M is M1 + 1.
+% es_estudiante(Estudiante, Curso)
+es_estudiante(andrea, informatica).
+es_estudiante(carlos, informatica).
+es_estudiante(juan, informatica).
+es_estudiante(andrea, programacion).
+es_estudiante(carlos, programacion).
+es_estudiante(cesar, programacion).
+es_estudiante(juan, programacion).
 
 % calificacion(Estudiante, Curso, Nota, Porcentaje)
 calificacion(juan, informatica, 1.0, 0.3).
@@ -35,7 +35,6 @@ calificacion(carlos, informatica, 1.0, 0.4).
 calificacion(andrea, informatica, 1.0, 0.3).
 calificacion(andrea, informatica, 1.0, 0.3).
 calificacion(andrea, informatica, 1.0, 0.4).
-
 calificacion(juan, programacion, 1.0, 0.3).
 calificacion(juan, programacion, 1.0, 0.3).
 calificacion(juan, programacion, 1.0, 0.4).
@@ -69,3 +68,16 @@ falla(cesar, programacion).
 % numero_fallas(Estudiante, Curso, Fallas)
 numero_fallas(E, C, F) :- bagof(1, falla(E, C), L), long(L, S), F is S.
 
+% reprueba_por_fallas(Estudiante, Curso)
+reprueba_por_fallas(E, C) :- numero_fallas(E, C, F), F >= 3.
+
+% reprueba_por_nota(Estudiante, Curso)
+reprueba_por_nota(E, C) :- nota_final(E, C, Nf), Nf =< 3.
+
+aprueba_curso(E, C, M) :-
+    not(estudiante(E)) -> M = 'El estudiante no existe';
+    not(curso(C)) -> M = 'El curso no existe';
+    not(es_estudiante(E, C)) -> M = 'El estudiante no se encuentra asociado al curso';
+    reprueba_por_fallas(E, C) -> M = 'Reprobó el curso por inasistencia';
+    reprueba_por_nota(E, C) -> M = 'Reprobó el curso por ponderación de nota';
+    true -> M = 'Has aprobado el curso'.
