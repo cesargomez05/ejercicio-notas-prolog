@@ -11,7 +11,7 @@ Desarrollo de un programa en Python mediante el cual, a partir de unas reglas de
 
 ## Reglas de negocio contempladas
 - Cada inasistencia se registrará por estudiante y curso.
-- Las calificaciones deben ser valores numéricos en el rango de 1 a 5, y su porcentaje sobre la ponderación final debe ser un número entre 0 y 100. Estos se deben registrar por estudiante y curso.
+- Las calificaciones deben ser valores numéricos en el rango de 1 a 5, y su porcentaje sobre la ponderación final debe ser un número decimal de máximo 2 decimales entre 0 y 1. Estos se deben registrar por estudiante y curso.
 - Si un estudiante registra 3 o mas inasistencias, reprobará el curso por inasistencia.
 - Si el ponderado de notas de un estudiante es menor a 3.0, reprobará el curso por ponderado de notas.
 - Si un estudiante tiene menos de 3 inasistencias, y el ponderado de notas es mayor o igual a 3.0, el estudiante aprobará el curso.
