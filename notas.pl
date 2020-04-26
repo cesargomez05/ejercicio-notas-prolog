@@ -60,6 +60,7 @@ nota_final(E, C, Nf) :- lista_notas(E, C, L), suma(L, S), Nf is S.
 % falla(Estudiante, Curso)
 falla(juan, programacion).
 falla(juan, programacion).
+falla(juan, informatica).
 falla(carlos, programacion).
 falla(carlos, programacion).
 falla(carlos, programacion).
@@ -75,9 +76,10 @@ reprueba_por_fallas(E, C) :- numero_fallas(E, C, F), F >= 3.
 reprueba_por_nota(E, C) :- nota_final(E, C, Nf), Nf =< 3.
 
 aprueba_curso(E, C, M) :-
+    es_estudiante(E, C),
     not(estudiante(E)) -> M = 'El estudiante no existe';
     not(curso(C)) -> M = 'El curso no existe';
     not(es_estudiante(E, C)) -> M = 'El estudiante no se encuentra asociado al curso';
-    reprueba_por_fallas(E, C) -> M = 'Reprobó el curso por inasistencia';
-    reprueba_por_nota(E, C) -> M = 'Reprobó el curso por ponderación de nota';
+    reprueba_por_fallas(E, C) -> M = 'Reprobo el curso por inasistencia';
+    reprueba_por_nota(E, C) -> M = 'Reprobo el curso por ponderacion de nota';
     true -> M = 'Has aprobado el curso'.
