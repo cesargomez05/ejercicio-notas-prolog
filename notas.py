@@ -1,8 +1,8 @@
-"""
 from pyswip import Prolog
 prolog = Prolog()
-prolog.consult('familia.pl')
+prolog.consult('notas.pl')
 
+"""
 prolog.assertz("father(michael,john)")
 prolog.assertz("father(michael,gina)")
 
